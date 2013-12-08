@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAI.Presentation", "GAI.Presentation\GAI.Presentation.csproj", "{F113DE92-72CD-4C29-BEAD-4F0439F53106}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAI.BusinessLogic", "GAI.BusinessLogic\GAI.BusinessLogic.csproj", "{4C3D6088-F7F8-4270-8BDA-DEF7744BED54}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F113DE92-72CD-4C29-BEAD-4F0439F53106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F113DE92-72CD-4C29-BEAD-4F0439F53106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F113DE92-72CD-4C29-BEAD-4F0439F53106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F113DE92-72CD-4C29-BEAD-4F0439F53106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C3D6088-F7F8-4270-8BDA-DEF7744BED54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C3D6088-F7F8-4270-8BDA-DEF7744BED54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C3D6088-F7F8-4270-8BDA-DEF7744BED54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C3D6088-F7F8-4270-8BDA-DEF7744BED54}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

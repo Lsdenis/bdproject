@@ -1,0 +1,657 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GAIModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="GAIModelStoreContainer">
+          <EntitySet Name="Firms" EntityType="GAIModel.Store.Firms" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Inspections" EntityType="GAIModel.Store.Inspections" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Insurances" EntityType="GAIModel.Store.Insurances" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Offense_Types" EntityType="GAIModel.Store.Offense_Types" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Offenses" EntityType="GAIModel.Store.Offenses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Owners" EntityType="GAIModel.Store.Owners" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PoliceDepartments" EntityType="GAIModel.Store.PoliceDepartments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="GAIModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Transports" EntityType="GAIModel.Store.Transports" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Inspection_Firm" Association="GAIModel.Store.FK_Inspection_Firm">
+            <End Role="Firms" EntitySet="Firms" />
+            <End Role="Inspections" EntitySet="Inspections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inspection_Transport" Association="GAIModel.Store.FK_Inspection_Transport">
+            <End Role="Transports" EntitySet="Transports" />
+            <End Role="Inspections" EntitySet="Inspections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insurance_Firm" Association="GAIModel.Store.FK_Insurance_Firm">
+            <End Role="Firms" EntitySet="Firms" />
+            <End Role="Insurances" EntitySet="Insurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insurance_Transport" Association="GAIModel.Store.FK_Insurance_Transport">
+            <End Role="Transports" EntitySet="Transports" />
+            <End Role="Insurances" EntitySet="Insurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offense_Offense_Type" Association="GAIModel.Store.FK_Offense_Offense_Type">
+            <End Role="Offense_Types" EntitySet="Offense_Types" />
+            <End Role="Offenses" EntitySet="Offenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offense_Owner" Association="GAIModel.Store.FK_Offense_Owner">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="Offenses" EntitySet="Offenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transport_Owner" Association="GAIModel.Store.FK_Transport_Owner">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="Transports" EntitySet="Transports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transport_PoliceDepartment" Association="GAIModel.Store.FK_Transport_PoliceDepartment">
+            <End Role="PoliceDepartments" EntitySet="PoliceDepartments" />
+            <End Role="Transports" EntitySet="Transports" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Firms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="City" Type="varchar(max)" />
+          <Property Name="Street" Type="varchar(max)" />
+          <Property Name="House" Type="varchar(max)" />
+          <Property Name="Owner_Name" Type="varchar(max)" />
+          <Property Name="Owner_Surname" Type="varchar(max)" />
+          <Property Name="Registration_Date" Type="datetime" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Inspections">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Transport" Type="int" />
+          <Property Name="Id_Firm" Type="int" />
+          <Property Name="Inspection_Date" Type="datetime" />
+          <Property Name="Duration_Time" Type="datetime" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Insurances">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Transport" Type="int" />
+          <Property Name="Id_Firm" Type="int" />
+          <Property Name="Start_Date" Type="datetime" />
+          <Property Name="End_Date" Type="datetime" />
+          <Property Name="Sum" Type="int" />
+          <Property Name="Type" Type="varchar(max)" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Offense_Types">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="varchar(max)" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Offenses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Owner" Type="int" />
+          <Property Name="Id_Offense" Type="int" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Owners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Surname" Type="varchar(max)" />
+          <Property Name="Patronymic" Type="varchar(max)" />
+          <Property Name="City" Type="varchar(max)" />
+          <Property Name="District" Type="varchar(max)" />
+          <Property Name="Street" Type="varchar(max)" />
+          <Property Name="House" Type="varchar(max)" />
+          <Property Name="Flat" Type="varchar(max)" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="PoliceDepartments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Transports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Police_Department" Type="int" />
+          <Property Name="Id_Owner" Type="int" />
+          <Property Name="License_Plates" Type="varchar(max)" />
+          <Property Name="Brand_Model" Type="varchar(max)" />
+          <Property Name="Creation_Date" Type="datetime" />
+          <Property Name="Color" Type="varchar(max)" />
+          <Property Name="Carcass" Type="int" />
+          <Property Name="Type" Type="varchar(max)" />
+          <Property Name="Max_Weight" Type="int" />
+          <Property Name="Notes" Type="varchar(max)" />
+          <Property Name="Deleted" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Inspection_Firm">
+          <End Role="Firms" Type="GAIModel.Store.Firms" Multiplicity="0..1" />
+          <End Role="Inspections" Type="GAIModel.Store.Inspections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inspections">
+              <PropertyRef Name="Id_Firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inspection_Transport">
+          <End Role="Transports" Type="GAIModel.Store.Transports" Multiplicity="0..1" />
+          <End Role="Inspections" Type="GAIModel.Store.Inspections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inspections">
+              <PropertyRef Name="Id_Transport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insurance_Firm">
+          <End Role="Firms" Type="GAIModel.Store.Firms" Multiplicity="0..1" />
+          <End Role="Insurances" Type="GAIModel.Store.Insurances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurances">
+              <PropertyRef Name="Id_Firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insurance_Transport">
+          <End Role="Transports" Type="GAIModel.Store.Transports" Multiplicity="0..1" />
+          <End Role="Insurances" Type="GAIModel.Store.Insurances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurances">
+              <PropertyRef Name="Id_Transport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offense_Offense_Type">
+          <End Role="Offense_Types" Type="GAIModel.Store.Offense_Types" Multiplicity="0..1" />
+          <End Role="Offenses" Type="GAIModel.Store.Offenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offense_Types">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Offenses">
+              <PropertyRef Name="Id_Offense" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offense_Owner">
+          <End Role="Owners" Type="GAIModel.Store.Owners" Multiplicity="0..1" />
+          <End Role="Offenses" Type="GAIModel.Store.Offenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Offenses">
+              <PropertyRef Name="Id_Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transport_Owner">
+          <End Role="Owners" Type="GAIModel.Store.Owners" Multiplicity="0..1" />
+          <End Role="Transports" Type="GAIModel.Store.Transports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transports">
+              <PropertyRef Name="Id_Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transport_PoliceDepartment">
+          <End Role="PoliceDepartments" Type="GAIModel.Store.PoliceDepartments" Multiplicity="0..1" />
+          <End Role="Transports" Type="GAIModel.Store.Transports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoliceDepartments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transports">
+              <PropertyRef Name="Id_Police_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GAIModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GAIEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Firms" EntityType="GAIModel.Firm" />
+          <EntitySet Name="Inspections" EntityType="GAIModel.Inspection" />
+          <EntitySet Name="Insurances" EntityType="GAIModel.Insurance" />
+          <EntitySet Name="Offenses" EntityType="GAIModel.Offense" />
+          <EntitySet Name="Offense_Types" EntityType="GAIModel.Offense_Type" />
+          <EntitySet Name="Owners" EntityType="GAIModel.Owner" />
+          <EntitySet Name="PoliceDepartments" EntityType="GAIModel.PoliceDepartment" />
+          <EntitySet Name="sysdiagrams" EntityType="GAIModel.sysdiagram" />
+          <EntitySet Name="Transports" EntityType="GAIModel.Transport" />
+          <AssociationSet Name="FK_Inspection_Firm" Association="GAIModel.FK_Inspection_Firm">
+            <End Role="Firm" EntitySet="Firms" />
+            <End Role="Inspection" EntitySet="Inspections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insurance_Firm" Association="GAIModel.FK_Insurance_Firm">
+            <End Role="Firm" EntitySet="Firms" />
+            <End Role="Insurance" EntitySet="Insurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inspection_Transport" Association="GAIModel.FK_Inspection_Transport">
+            <End Role="Transport" EntitySet="Transports" />
+            <End Role="Inspection" EntitySet="Inspections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insurance_Transport" Association="GAIModel.FK_Insurance_Transport">
+            <End Role="Transport" EntitySet="Transports" />
+            <End Role="Insurance" EntitySet="Insurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offense_Offense_Type" Association="GAIModel.FK_Offense_Offense_Type">
+            <End Role="Offense_Type" EntitySet="Offense_Types" />
+            <End Role="Offense" EntitySet="Offenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offense_Owner" Association="GAIModel.FK_Offense_Owner">
+            <End Role="Owner" EntitySet="Owners" />
+            <End Role="Offense" EntitySet="Offenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transport_Owner" Association="GAIModel.FK_Transport_Owner">
+            <End Role="Owner" EntitySet="Owners" />
+            <End Role="Transport" EntitySet="Transports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transport_PoliceDepartment" Association="GAIModel.FK_Transport_PoliceDepartment">
+            <End Role="PoliceDepartment" EntitySet="PoliceDepartments" />
+            <End Role="Transport" EntitySet="Transports" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Firm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Street" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="House" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Owner_Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Owner_Surname" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Registration_Date" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="Inspections" Relationship="GAIModel.FK_Inspection_Firm" FromRole="Firm" ToRole="Inspection" />
+          <NavigationProperty Name="Insurances" Relationship="GAIModel.FK_Insurance_Firm" FromRole="Firm" ToRole="Insurance" />
+        </EntityType>
+        <EntityType Name="Inspection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Transport" Type="Int32" />
+          <Property Name="Id_Firm" Type="Int32" />
+          <Property Name="Inspection_Date" Type="DateTime" Precision="3" />
+          <Property Name="Duration_Time" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="Firm" Relationship="GAIModel.FK_Inspection_Firm" FromRole="Inspection" ToRole="Firm" />
+          <NavigationProperty Name="Transport" Relationship="GAIModel.FK_Inspection_Transport" FromRole="Inspection" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="Insurance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Transport" Type="Int32" />
+          <Property Name="Id_Firm" Type="Int32" />
+          <Property Name="Start_Date" Type="DateTime" Precision="3" />
+          <Property Name="End_Date" Type="DateTime" Precision="3" />
+          <Property Name="Sum" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="Firm" Relationship="GAIModel.FK_Insurance_Firm" FromRole="Insurance" ToRole="Firm" />
+          <NavigationProperty Name="Transport" Relationship="GAIModel.FK_Insurance_Transport" FromRole="Insurance" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="Offense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Owner" Type="Int32" />
+          <Property Name="Id_Offense" Type="Int32" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="Offense_Type" Relationship="GAIModel.FK_Offense_Offense_Type" FromRole="Offense" ToRole="Offense_Type" />
+          <NavigationProperty Name="Owner" Relationship="GAIModel.FK_Offense_Owner" FromRole="Offense" ToRole="Owner" />
+        </EntityType>
+        <EntityType Name="Offense_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="Offenses" Relationship="GAIModel.FK_Offense_Offense_Type" FromRole="Offense_Type" ToRole="Offense" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="District" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Street" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="House" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Flat" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="Offenses" Relationship="GAIModel.FK_Offense_Owner" FromRole="Owner" ToRole="Offense" />
+          <NavigationProperty Name="Transports" Relationship="GAIModel.FK_Transport_Owner" FromRole="Owner" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="PoliceDepartment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="Transports" Relationship="GAIModel.FK_Transport_PoliceDepartment" FromRole="PoliceDepartment" ToRole="Transport" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Police_Department" Type="Int32" />
+          <Property Name="Id_Owner" Type="Int32" />
+          <Property Name="License_Plates" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Brand_Model" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Creation_Date" Type="DateTime" Precision="3" />
+          <Property Name="Color" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Carcass" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Max_Weight" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Deleted" Type="Boolean" />
+          <NavigationProperty Name="Inspections" Relationship="GAIModel.FK_Inspection_Transport" FromRole="Transport" ToRole="Inspection" />
+          <NavigationProperty Name="Insurances" Relationship="GAIModel.FK_Insurance_Transport" FromRole="Transport" ToRole="Insurance" />
+          <NavigationProperty Name="Owner" Relationship="GAIModel.FK_Transport_Owner" FromRole="Transport" ToRole="Owner" />
+          <NavigationProperty Name="PoliceDepartment" Relationship="GAIModel.FK_Transport_PoliceDepartment" FromRole="Transport" ToRole="PoliceDepartment" />
+        </EntityType>
+        <Association Name="FK_Inspection_Firm">
+          <End Role="Firm" Type="GAIModel.Firm" Multiplicity="0..1" />
+          <End Role="Inspection" Type="GAIModel.Inspection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firm">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inspection">
+              <PropertyRef Name="Id_Firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insurance_Firm">
+          <End Role="Firm" Type="GAIModel.Firm" Multiplicity="0..1" />
+          <End Role="Insurance" Type="GAIModel.Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firm">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="Id_Firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inspection_Transport">
+          <End Role="Transport" Type="GAIModel.Transport" Multiplicity="0..1" />
+          <End Role="Inspection" Type="GAIModel.Inspection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inspection">
+              <PropertyRef Name="Id_Transport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insurance_Transport">
+          <End Role="Transport" Type="GAIModel.Transport" Multiplicity="0..1" />
+          <End Role="Insurance" Type="GAIModel.Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="Id_Transport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offense_Offense_Type">
+          <End Role="Offense_Type" Type="GAIModel.Offense_Type" Multiplicity="0..1" />
+          <End Role="Offense" Type="GAIModel.Offense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offense_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Offense">
+              <PropertyRef Name="Id_Offense" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offense_Owner">
+          <End Role="Owner" Type="GAIModel.Owner" Multiplicity="0..1" />
+          <End Role="Offense" Type="GAIModel.Offense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Offense">
+              <PropertyRef Name="Id_Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transport_Owner">
+          <End Role="Owner" Type="GAIModel.Owner" Multiplicity="0..1" />
+          <End Role="Transport" Type="GAIModel.Transport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transport">
+              <PropertyRef Name="Id_Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transport_PoliceDepartment">
+          <End Role="PoliceDepartment" Type="GAIModel.PoliceDepartment" Multiplicity="0..1" />
+          <End Role="Transport" Type="GAIModel.Transport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoliceDepartment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transport">
+              <PropertyRef Name="Id_Police_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GAIModelStoreContainer" CdmEntityContainer="GAIEntities">
+    <EntitySetMapping Name="Firms">
+      <EntityTypeMapping TypeName="IsTypeOf(GAIModel.Firm)">
+        <MappingFragment StoreEntitySet="Firms">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="House" ColumnName="House" />
+          <ScalarProperty Name="Owner_Name" ColumnName="Owner_Name" />
+          <ScalarProperty Name="Owner_Surname" ColumnName="Owner_Surname" />
+          <ScalarProperty Name="Registration_Date" ColumnName="Registration_Date" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inspections">
+      <EntityTypeMapping TypeName="IsTypeOf(GAIModel.Inspection)">
+        <MappingFragment StoreEntitySet="Inspections">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Transport" ColumnName="Id_Transport" />
+          <ScalarProperty Name="Id_Firm" ColumnName="Id_Firm" />
+          <ScalarProperty Name="Inspection_Date" ColumnName="Inspection_Date" />
+          <ScalarProperty Name="Duration_Time" ColumnName="Duration_Time" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Insurances">
+      <EntityTypeMapping TypeName="IsTypeOf(GAIModel.Insurance)">
+        <MappingFragment StoreEntitySet="Insurances">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Transport" ColumnName="Id_Transport" />
+          <ScalarProperty Name="Id_Firm" ColumnName="Id_Firm" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Sum" ColumnName="Sum" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Offenses">
+      <EntityTypeMapping TypeName="IsTypeOf(GAIModel.Offense)">
+        <MappingFragment StoreEntitySet="Offenses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Owner" ColumnName="Id_Owner" />
+          <ScalarProperty Name="Id_Offense" ColumnName="Id_Offense" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Offense_Types">
+      <EntityTypeMapping TypeName="IsTypeOf(GAIModel.Offense_Type)">
+        <MappingFragment StoreEntitySet="Offense_Types">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Owners">
+      <EntityTypeMapping TypeName="IsTypeOf(GAIModel.Owner)">
+        <MappingFragment StoreEntitySet="Owners">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="House" ColumnName="House" />
+          <ScalarProperty Name="Flat" ColumnName="Flat" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PoliceDepartments">
+      <EntityTypeMapping TypeName="IsTypeOf(GAIModel.PoliceDepartment)">
+        <MappingFragment StoreEntitySet="PoliceDepartments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IsTypeOf(GAIModel.sysdiagram)">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transports">
+      <EntityTypeMapping TypeName="IsTypeOf(GAIModel.Transport)">
+        <MappingFragment StoreEntitySet="Transports">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Police_Department" ColumnName="Id_Police_Department" />
+          <ScalarProperty Name="Id_Owner" ColumnName="Id_Owner" />
+          <ScalarProperty Name="License_Plates" ColumnName="License_Plates" />
+          <ScalarProperty Name="Brand_Model" ColumnName="Brand_Model" />
+          <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Carcass" ColumnName="Carcass" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Max_Weight" ColumnName="Max_Weight" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
