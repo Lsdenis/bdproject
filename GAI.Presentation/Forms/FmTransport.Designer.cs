@@ -30,6 +30,7 @@ namespace GAI.Presentation.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmTransport));
             this.textLicensePlates = new System.Windows.Forms.TextBox();
             this.textBrandModel = new System.Windows.Forms.TextBox();
             this.textCarcass = new System.Windows.Forms.TextBox();
@@ -226,8 +227,9 @@ namespace GAI.Presentation.Forms
             this.Controls.Add(this.textCarcass);
             this.Controls.Add(this.textBrandModel);
             this.Controls.Add(this.textLicensePlates);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FmTransport";
-            this.Text = "FmTransport";
+            this.Text = "Transport";
             this.ResumeLayout(false);
             this.PerformLayout();
 

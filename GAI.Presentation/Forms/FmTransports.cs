@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
-using Word = Microsoft.Office.Interop.Word;
 using System.Windows.Forms;
 using GAI.BusinessLogic.DataModel;
 using GAI.BusinessLogic.Services;
@@ -93,63 +91,6 @@ namespace GAI.Presentation.Forms
             }
             _dictionaryOfTransports.Add(newTransport.License_Plates, newTransport);
             AddItem(newTransport);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-                object oMissing = Missing.Value;
-                var app = new Word.Application();     // приложение ворда
-
-                var doc = app.Documents.Add(ref oMissing, ref oMissing, ref oMissing, ref oMissing);
-                //Word.Paragraph currentPartition = app.ActiveDocument.Paragraphs.Add();
-                //currentPartition.Range.Text = valuesOfPartition.Text;
-                try
-                {                                        
-                    var tableLocation = doc.Range(0, 0);
-
-                    tableLocation.InsertBefore("Report of current transports.");
-                    tableLocation.Font.Name = "Times New Roman";
-                    tableLocation.Font.Size = 14;                    
-                    tableLocation.InsertParagraphAfter();
-                    tableLocation.SetRange(tableLocation.End, tableLocation.End);
-                    tableLocation.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-
-                    app.ActiveDocument.Tables.Add(tableLocation, _dictionaryOfTransports.Count + 1, 5);
-                    var circleTable = app.ActiveDocument.Tables[1];
-                    circleTable.Cell(1, 1).Range.Text = "License_Plates";
-                    circleTable.Cell(1, 2).Range.Text = "PoliceDepartment";
-                    circleTable.Cell(1, 3).Range.Text = "Brand_Model";
-                    circleTable.Cell(1, 4).Range.Text = "Carcass";
-                    circleTable.Cell(1, 5).Range.Text = "Max_Weight";
-                                        
-                    object styleName = "Изысканная таблица";
-                    circleTable.set_Style(ref styleName);
-
-//                    for (int i = 0; i < clubSportsmenList.Count; i++)
-                    {
-//                        circleTable.Cell(1, i + 2).Range.Text = sportsmenList[i];
-//                        circleTable.Cell(i + 2, 1).Range.Text = sportsmenList[i];
-//                        circleTable.Cell(i + 2, i + 2).Range.Text = "-----------------"; // заполнение
-                    }
-
-                    var count = 2;
-                    foreach (var transport in _dictionaryOfTransports.Values)
-                    {
-                        circleTable.Cell(count, 1).Range.Text = transport.License_Plates;
-                        circleTable.Cell(count, 2).Range.Text = transport.PoliceDepartment.Name;
-                        circleTable.Cell(count, 3).Range.Text = transport.Brand_Model;
-                        circleTable.Cell(count, 4).Range.Text = transport.Carcass.ToString();
-                        circleTable.Cell(count, 5).Range.Text = transport.Max_Weight.ToString();
-                        count++;
-                    }
-
-                    app.Visible = true;
-                    doc.SaveAs2(@"" + Environment.CurrentDirectory + "\\currentReport.doc");   //для сохранения файла
-                }
-                catch
-                {
-                    app.Quit();
-                }
         }
     }
 }

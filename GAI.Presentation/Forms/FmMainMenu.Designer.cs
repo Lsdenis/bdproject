@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmMainMenu));
             this.btnTransports = new System.Windows.Forms.Button();
             this.btnOwners = new System.Windows.Forms.Button();
             this.btnOffense = new System.Windows.Forms.Button();
             this.btnPoliceDepartments = new System.Windows.Forms.Button();
             this.btnFirms = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.fmReports = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTransports
@@ -62,7 +64,7 @@
             this.btnOffense.Name = "btnOffense";
             this.btnOffense.Size = new System.Drawing.Size(108, 23);
             this.btnOffense.TabIndex = 2;
-            this.btnOffense.Text = "Offense";
+            this.btnOffense.Text = "Offense Types";
             this.btnOffense.UseVisualStyleBackColor = true;
             this.btnOffense.Click += new System.EventHandler(this.btnOffense_Click);
             // 
@@ -88,27 +90,38 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(13, 157);
+            this.btnClose.Location = new System.Drawing.Point(12, 186);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(108, 23);
             this.btnClose.TabIndex = 5;
-            this.btnClose.Text = "Close";
+            this.btnClose.Text = "Exit";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // fmReports
+            // 
+            this.fmReports.Location = new System.Drawing.Point(13, 157);
+            this.fmReports.Name = "fmReports";
+            this.fmReports.Size = new System.Drawing.Size(107, 23);
+            this.fmReports.TabIndex = 6;
+            this.fmReports.Text = "Reports";
+            this.fmReports.UseVisualStyleBackColor = true;
             // 
             // FmMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(133, 192);
+            this.ClientSize = new System.Drawing.Size(133, 219);
+            this.Controls.Add(this.fmReports);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnFirms);
             this.Controls.Add(this.btnPoliceDepartments);
             this.Controls.Add(this.btnOffense);
             this.Controls.Add(this.btnOwners);
             this.Controls.Add(this.btnTransports);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FmMainMenu";
-            this.Text = "FmMainMenu";
+            this.Text = "Menu";
             this.ResumeLayout(false);
 
         }
@@ -121,6 +134,7 @@
         private System.Windows.Forms.Button btnPoliceDepartments;
         private System.Windows.Forms.Button btnFirms;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button fmReports;
 
     }
 }

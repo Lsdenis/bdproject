@@ -18,31 +18,31 @@ namespace GAI.Presentation.Forms
         private void btnTransports_Click(object sender, EventArgs e)
         {
             var form = new FmTransports();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void btnOwners_Click(object sender, EventArgs e)
         {
             var form = new FmOwners();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void btnOffense_Click(object sender, EventArgs e)
         {
-            var form = new FmOffense();
-            form.Show();
+            var form = new FmOffenseType();
+            form.ShowDialog();
         }
 
         private void btnPoliceDepartments_Click(object sender, EventArgs e)
         {
             var form = new FmPoliceDepartments();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void btnFirms_Click(object sender, EventArgs e)
         {
             var form = new FmFirms();
-            form.Show();
+            form.ShowDialog();
         }
     }
 }

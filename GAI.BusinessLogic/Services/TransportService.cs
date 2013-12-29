@@ -22,7 +22,7 @@ namespace GAI.BusinessLogic.Services
 
         public void SaveOrUpdateTransport(Transport transport, out Exception exception)
         {
-            if ((transport.License_Plates == null) || string.IsNullOrEmpty(transport.License_Plates))
+            if (string.IsNullOrEmpty(transport.License_Plates))
             {
                 exception = new NullReferenceException();
                 return;

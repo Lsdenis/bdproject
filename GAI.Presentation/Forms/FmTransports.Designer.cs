@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmTransports));
             this.lvTransports = new System.Windows.Forms.ListView();
             this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.License_Plates = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,7 +48,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvTransports
@@ -206,22 +206,11 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(194, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
-            this.btnPrint.TabIndex = 9;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.button1_Click);
-            // 
             // FmTransports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 402);
-            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
@@ -231,8 +220,9 @@
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.cbStatus);
             this.Controls.Add(this.lvTransports);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FmTransports";
-            this.Text = "FmTransports";
+            this.Text = "Transports";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,6 +248,5 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnPrint;
     }
 }

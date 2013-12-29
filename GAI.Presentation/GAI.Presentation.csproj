@@ -31,9 +31,25 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>GAI.Presentation.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,11 +72,11 @@
     <Compile Include="Forms\FmMainMenu.Designer.cs">
       <DependentUpon>FmMainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FmOffense.cs">
+    <Compile Include="Forms\FmOffenseType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FmOffense.Designer.cs">
-      <DependentUpon>FmOffense.cs</DependentUpon>
+    <Compile Include="Forms\FmOffenseType.Designer.cs">
+      <DependentUpon>FmOffenseType.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FmOwners.cs">
       <SubType>Form</SubType>
@@ -73,6 +89,12 @@
     </Compile>
     <Compile Include="Forms\FmPoliceDepartments.Designer.cs">
       <DependentUpon>FmPoliceDepartments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FmReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FmReports.Designer.cs">
+      <DependentUpon>FmReports.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FmTransport.cs">
       <SubType>Form</SubType>
@@ -88,8 +110,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FmFirms.resx">
+      <DependentUpon>FmFirms.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FmMainMenu.resx">
       <DependentUpon>FmMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FmOffenseType.resx">
+      <DependentUpon>FmOffenseType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FmOwners.resx">
+      <DependentUpon>FmOwners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FmPoliceDepartments.resx">
+      <DependentUpon>FmPoliceDepartments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FmReports.resx">
+      <DependentUpon>FmReports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FmTransport.resx">
       <DependentUpon>FmTransport.cs</DependentUpon>
@@ -98,14 +135,16 @@
       <DependentUpon>FmTransports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -155,6 +194,12 @@
       <Project>{4c3d6088-f7f8-4270-8bda-def7744bed54}</Project>
       <Name>GAI.BusinessLogic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GAIIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
